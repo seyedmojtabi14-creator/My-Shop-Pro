@@ -1,3 +1,4 @@
+import { connectedToDatabase } from "../lib/mongodb";
 import ProductsList from "./ProductsList ";
 
 export default async function ProductCommponent() {

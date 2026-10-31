@@ -1,9 +1,11 @@
 import ProductsList from "./ProductsList ";
 
 export default async function ProductCommponent() {
-  const res = await fetch("http://localhost:3000/api/products");
+ await connectedToDatabase();
 
-  const products = await res.json();
+  const products = await Product.find({}).lean();
+
+  const safeProducts = JSON.parse(JSON.stringify(products));
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16 mt-10">
@@ -19,7 +21,7 @@ export default async function ProductCommponent() {
         <div className="mt-5 h-1 w-16 mx-auto md:mx-0 md:mr-auto rounded-full bg-blue-600" />
       </div>
 
-      <ProductsList products={products} />
+      <ProductsList products={safeProducts} />
     </section>
   );
 }

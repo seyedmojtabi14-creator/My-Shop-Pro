@@ -33,21 +33,39 @@ export default function Header() {
         <div className="sm:flex items-center gap-8 hidden mr-5">
           <Link
             href="/cart"
-            className="font-medium text-slate-700 transition hover:text-blue-600"
+            className={`relative inline-block font-medium transition-colors hover:text-blue-600 ${
+              pathname === "/cart" ? "text-blue-500" : "text-slate-700"
+            } after:absolute after:bottom-0 after:right-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 ${
+              pathname === "/cart"
+                ? "after:w-full"
+                : "after:w-0 hover:after:w-full"
+            }`}
           >
             سبد خرید
           </Link>
 
           <Link
             href="/products"
-            className="font-medium text-slate-700 transition hover:text-blue-600"
+            className={`relative inline-block font-medium transition-colors hover:text-blue-600 ${
+              pathname === "/products" ? "text-blue-500" : "text-slate-700"
+            } after:absolute after:bottom-0 after:right-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 ${
+              pathname === "/products"
+                ? "after:w-full"
+                : "after:w-0 hover:after:w-full"
+            }`}
           >
             فروشگاه
           </Link>
 
           <Link
             href="/"
-            className="font-medium text-slate-700 transition hover:text-blue-600"
+            className={`relative inline-block font-medium transition-colors hover:text-blue-600 ${
+              pathname === "/" ? "text-blue-500" : "text-slate-700"
+            } after:absolute after:bottom-0 after:right-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 ${
+              pathname === "/"
+                ? "after:w-full"
+                : "after:w-0 hover:after:w-full"
+            }`}
           >
             صفحه اصلی
           </Link>

@@ -1,11 +1,9 @@
 import ProductsList from "./ProductsList ";
 
 export default async function ProductCommponent() {
-  const res = await fetch("https://dummyjson.com/products/category/laptops");
+  const res = await fetch("http://localhost:3000/api/products");
 
-  const data = await res.json();
-
-  const products = await data.products;
+  const products = await res.json();
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16 mt-10">

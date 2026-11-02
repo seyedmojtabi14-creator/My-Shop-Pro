@@ -8,7 +8,7 @@ import {
   FaHome,
   FaStore,
 } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -17,6 +17,18 @@ export default function Header() {
   const pathname = usePathname();
 
   console.log(pathname);
+
+  const boxRef = useRef(null)
+
+  function ExitTheMenu(e){
+    if(boxRef.current && !boxRef.current.contains(e.target)){
+      setIsActivMobile(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown',ExitTheMenu)
+  } ,[])
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 w-full bg-slate-100 text-right">
@@ -82,6 +94,7 @@ export default function Header() {
       {isactivmobile && (
         <aside
           dir="rtl"
+          ref={boxRef}
           className={`fixed right-0 top-0 z-50 h-dvh w-72 max-w-[85vw] bg-white p-5 shadow-2xl transition-transform duration-300 ease-in-out ${
             isactivmobile ? "translate-x-0" : "translate-x-full"
           }`}

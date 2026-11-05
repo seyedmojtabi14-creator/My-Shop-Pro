@@ -17,9 +17,9 @@ export default function Footer() {
      برنامه نویس
     </h3>
     <ul className="space-y-2 text-slate-600">
-      <li><Link href="/">سید مجتبی موسوی</Link></li>
-      <li><Link href="/products">سن : 17</Link></li>
-      <li><Link href="/about">حونیور</Link></li>
+      <li><span>سید مجتبی موسوی</span></li>
+      <li><span>سن : 17</span></li>
+      <li><span>حونیور</span></li>
     </ul>
   </div>
 
@@ -39,9 +39,9 @@ export default function Footer() {
       راه ارتباط
     </h3>
     <ul className="space-y-2 text-slate-600">
-      <li><Link href="/">واتساب</Link></li>
-      <li><Link href="/products">گیت هاب</Link></li>
-      <li><Link href="/about">لینکدین</Link></li>
+      <li><span>واتساب</span></li>
+      <li><Link href="https://github.com/seyedmojtabi14-creator">گیت هاب</Link></li>
+      <li><span>لینکدین</span></li>
     </ul>
   </div>
 

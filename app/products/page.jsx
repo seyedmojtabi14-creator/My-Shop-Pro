@@ -1,7 +1,7 @@
 import ProductCommponent from "../commpnents/ProductCommponent";
 
-export default function Products(){
+export default function Products({searchParams}){
     return(
-        <ProductCommponent />
+        <ProductCommponent searchParams={searchParams}/>
     )
 }

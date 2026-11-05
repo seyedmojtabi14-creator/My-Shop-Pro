@@ -2,9 +2,9 @@ import Link from "next/link";
 import formatPrice from "../../utils/formatPrice";
 
 export default async function ProductDetails({ params }) {
-  let { id } = await params;
-  let res = await fetch(`https://dummyjson.com/products/${id}`);
-  let product = await res.json();
+  const { id } = await params;
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const product = await res.json();
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-16 mt-10">
@@ -29,11 +29,17 @@ export default async function ProductDetails({ params }) {
               {product.title}
             </h1>
 
-            <div className="mt-4 flex items-center justify-end gap-2 text-sm text-gray-500">
+            <div className="text-right mt-4 flex items-center justify-end gap-2 text-sm text-gray-500">
               <span>{product.rating ?? "بدون امتیاز"}</span>
               <span className="text-amber-400">★</span>
               <span>امتیاز محصول</span>
             </div>
+
+            <span>دسته بندی: </span>
+            <Link href={`/products?category=${product.category}`}>
+              {" "}
+              {product.category}{" "}
+            </Link>
 
             <p className="mt-6 text-sm leading-8 text-gray-500 sm:text-base">
               {product.description}
@@ -73,7 +79,7 @@ export default async function ProductDetails({ params }) {
                 href="/products"
                 className="flex-1 rounded-xl border border-gray-200 px-5 py-3.5 text-center text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
               >
-                بازگشت به محصولا
+                بازگشت به محصولات
               </Link>
 
               <Link

@@ -4,7 +4,7 @@ import formatPrice from "../utils/formatPrice";
 export default function ProductBox({ product }) {
   return (
     <div className="w-full min-w-0 overflow-hidden rounded-2xl border border-gray-100 bg-white p-3 shadow-sm transition duration-300 hover:shadow-lg sm:p-4">
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/products/${product._id}`}>
         <div className="flex h-48 items-center justify-center rounded-xl bg-gray-50">
           <img
             src={product.thumbnail}
@@ -14,7 +14,7 @@ export default function ProductBox({ product }) {
         </div>
       </Link>
 
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/products/${product._id}`}>
         <h2 className="mt-4 line-clamp-1 text-base font-semibold text-gray-800">
           {product.title}
         </h2>

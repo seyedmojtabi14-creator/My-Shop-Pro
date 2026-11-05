@@ -2,17 +2,17 @@ import { connectedToDatabase } from "../lib/mongodb";
 import ProductsList from "./ProductsList ";
 import Product from "@/app/models/Product";
 
-export default async function ProductCommponent({searchParams}) {
+export default async function ProductCommponent({ searchParams }) {
+  const category = searchParams?.category;
 
-  const category = searchParams?.category
+  await connectedToDatabase();
 
-  const  url = category 
-  ?  `http://localhost:3000/api/products?category=${category}`
-  :  "http://localhost:3000/api/products"
+  const products = await Product.find(category ? { category } : {}).lean();
 
-
-  const res = await fetch(url)
-  const  products = await res.json() 
+  const safeProducts = products.map((product) => ({
+    ...product,
+    _id: product._id.toString(),
+  }));
   // await connectedToDatabase();
 
   // const products = await Product.find({}).lean();
@@ -33,7 +33,7 @@ export default async function ProductCommponent({searchParams}) {
         <div className="mt-5 h-1 w-16 mx-auto md:mx-0 md:mr-auto rounded-full bg-blue-600" />
       </div>
 
-      <ProductsList products={products} />
+      <ProductsList products={safeProducts} />
     </section>
   );
 }

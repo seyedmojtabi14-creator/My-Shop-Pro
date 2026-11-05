@@ -16,7 +16,6 @@ export async function connectedToDatabase(){
         isConnected = true
     }catch(error){
         console.log(error);
-        process.exit(1)
     }
     
 }

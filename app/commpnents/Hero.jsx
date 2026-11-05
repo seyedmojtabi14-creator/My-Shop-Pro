@@ -7,7 +7,7 @@ export default function Hero() {
 
         {/* Content */}
         <div className="mb-10 order-2 text-center sm:text-right">
-          <h1 className="mb-2 text-2xl sm:text-xl font-bold leading-relaxed text-gray-900 sm:text-4xl lg:text-3xl">
+          <h1 className="mb-2 text-2xl  font-bold leading-relaxed text-gray-900 sm:text-3xl md:text-4xl lg:text-3xl">
             یک تجربه خرید
             <span className="text-blue-600"> متفاوت</span>
           </h1>

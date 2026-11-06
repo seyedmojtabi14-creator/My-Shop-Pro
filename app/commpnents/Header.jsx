@@ -8,8 +8,9 @@ import {
   FaHome,
   FaStore,
 } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { CartContext } from "../context/CartContext";
 
 export default function Header() {
   const [isactivmobile, setIsActivMobile] = useState(false);
@@ -18,17 +19,19 @@ export default function Header() {
 
   console.log(pathname);
 
-  const boxRef = useRef(null)
+  const boxRef = useRef(null);
 
-  function ExitTheMenu(e){
-    if(boxRef.current && !boxRef.current.contains(e.target)){
-      setIsActivMobile(false)
+  function ExitTheMenu(e) {
+    if (boxRef.current && !boxRef.current.contains(e.target)) {
+      setIsActivMobile(false);
     }
   }
 
+  let { cart } = useContext(CartContext);
+
   useEffect(() => {
-    document.addEventListener('mousedown',ExitTheMenu)
-  } ,[])
+    document.addEventListener("mousedown", ExitTheMenu);
+  }, []);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 w-full bg-slate-100 text-right">
@@ -54,6 +57,11 @@ export default function Header() {
             }`}
           >
             سبد خرید
+            {cart.length > 0 && (
+              <span className="inline-flex h-6 w-6 m-1 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                {cart.length}
+              </span>
+            )}
           </Link>
 
           <Link
@@ -74,9 +82,7 @@ export default function Header() {
             className={`relative inline-block font-medium transition-colors hover:text-blue-600 ${
               pathname === "/" ? "text-blue-500" : "text-slate-700"
             } after:absolute after:bottom-0 after:right-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 ${
-              pathname === "/"
-                ? "after:w-full"
-                : "after:w-0 hover:after:w-full"
+              pathname === "/" ? "after:w-full" : "after:w-0 hover:after:w-full"
             }`}
           >
             صفحه اصلی
@@ -138,6 +144,11 @@ export default function Header() {
             >
               <FaShoppingCart />
               سبد خرید
+              {cart.length > 0 && (
+              <span className="inline-flex h-6 w-6 m-1 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                {cart.length}
+              </span>
+            )}
             </Link>
           </nav>
         </aside>

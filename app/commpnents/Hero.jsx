@@ -6,20 +6,20 @@ export default function Hero() {
       <div className="grid min-h-[280px] items-center overflow-hidden rounded-3xl bg-[url('/images/hero-bg-mobile-2.png')] sm:bg-[url('/images/hero-bg.png')] bg-cover bg-center p-6 sm:min-h-[350px] sm:p-10 md:grid-cols-2 lg:min-h-[400px] lg:p-14">
 
         {/* Content */}
-        <div className="mb-10 order-2 text-center sm:text-right">
-          <h1 className="mb-2 text-2xl  font-bold leading-relaxed text-gray-900 sm:text-3xl md:text-4xl lg:text-3xl">
+        <div className="space-y-5 mb-10 order-2 text-center sm:text-right">
+          <h1 className="mb-2 text-2xl  font-bold leading-relaxed text-gray-900 sm:text-3xl  lg:text-3xl">
             یک تجربه خرید
-            <span className="text-blue-600"> متفاوت</span>
+            <span className="inline-flex text-blue-600"> متفاوت</span>
           </h1>
 
-          <p className=" right-0 mb-3 max-w-lg sm:max-w-sm   text-sm md:text-lg leading-7 text-gray-600 sm:text-sm sm:leading-8 md:mx-0">
+          <p className=" right-0 mb-3 max-w-lg sm:max-w-xs md:max-w-lg text-sm md:text-xl leading-7 text-gray-600 sm:text-lg sm:leading-8 md:mx-0">
             از محصولات روزمره تا انتخاب‌های خاص؛ محصولات مورد علاقه‌ات را با چند
             کلیک پیدا کن و یک خرید آسان و لذت‌بخش داشته باش.
           </p>
 
           <Link
             href="/products"
-            className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 sm:text-base"
+            className=" inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 sm:text-base"
           >
             مشاهده محصولات
           </Link>

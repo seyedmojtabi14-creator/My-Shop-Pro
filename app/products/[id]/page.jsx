@@ -3,6 +3,7 @@ import formatPrice from "../../utils/formatPrice";
 import { connectedToDatabase } from "@/app/lib/mongodb";
 import Product from "@/app/models/Product";
 import { notFound } from "next/navigation";
+import AddTodoButton from "./AddToCartButton";
 
 
 export default async function ProductDetails({ params }) {
@@ -87,12 +88,10 @@ export default async function ProductDetails({ params }) {
                 بازگشت به محصولات
               </Link>
 
-              <Link
-                href="/cart"
-                className="flex-1 sm:flex-none md:flex-1 rounded-xl bg-blue-600 px-5 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
-              >
-                افزودن به سبد خرید
-              </Link>
+              <AddTodoButton product={
+                {...product,_id: product._id.toString()
+                }
+              }/>
             </div>
           </div>
         </div>

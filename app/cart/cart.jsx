@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import formatPrice from "../utils/formatPrice";
 import { CartContext } from "../context/CartContext";
+import { FaBoxOpen } from "react-icons/fa";
 
 export default function CartComponent() {
   let {cart,getTotal} = useContext(CartContext)
@@ -26,16 +27,20 @@ export default function CartComponent() {
               </p>
             </div>
 
-            {/* <span className="text-sm text-slate-500">تعداد محصولات: {cart.length}</span> */}
+            <span className="text-sm text-slate-500">تعداد محصولات: {cart.length}</span>
           </div>
 
           <div className="mt-5 divide-y divide-slate-200">
-             {cart?.length > 0 &&  cart.map((product) => (
+             {cart?.length > 0 ?  cart.map((product) => (
               <CartItem key={product._id} product={product} />
-            ))}
+            )) : <div className="flex flex-col items-center justify-center gap-3 py-10 text-gray-400">
+                <FaBoxOpen size={55} />
+                <p>محصولی وجود ندارد</p>
+              </div>}
           </div>
 
-          <div className="mt-5 space-y-4">
+          {cart.length > 0 && (
+             <div className="mt-5 space-y-4">
             <div className="flex justify-between border-t  pt-4 text-lg font-bold text-slate-800">
               <span>مبلغ نهایی</span>
               <span>{formatPrice(getTotal())} تومان</span>
@@ -48,10 +53,12 @@ export default function CartComponent() {
               ادامه ثبت سفارش
             </button>
           </div>
+          )}
         </div>
 
         {/* اطلاعات مشتری */}
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
+        {cart.length > 0 && (
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-bold text-slate-800">اطلاعات شما</h2>
 
           <form className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -99,6 +106,7 @@ export default function CartComponent() {
             </button>
           </form>
         </div>
+        )}
       </div>
     </section>
   );

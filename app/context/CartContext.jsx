@@ -27,10 +27,10 @@ export function CartProvider({ children }) {
   }
 
   function updateQuantity(id, newQuantity) {
-    if(newQuantity < 1) return null
+    if (newQuantity < 1) return null;
     setCart((prev) => {
       return prev.map((item) => {
-       return item._id == id ? { ...item, quantity: newQuantity } : item;
+        return item._id == id ? { ...item, quantity: newQuantity } : item;
       });
     });
   }
@@ -43,20 +43,16 @@ export function CartProvider({ children }) {
     return total;
   }
 
-  async function dollarPrice(price){
-    let res = await fetch("https://nerkhara.com/api/v1/latest/usd.json");
-    let req = await res.json();
-    let dollar = req.item.price * 10
-
-    console.log(req.price);
-    
-    let Dollarprice = price * dollar 
-    return dollarPrice
-  }
 
   return (
     <CartContext.Provider
-      value={{ addToCart, removeFromCart, updateQuantity, getTotal, cart , dollarPrice}}
+      value={{
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        getTotal,
+        cart,
+      }}
     >
       {children}
     </CartContext.Provider>

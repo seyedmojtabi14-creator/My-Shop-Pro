@@ -1,27 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import formatPrice from "../utils/formatPrice";
+import { CartContext } from "../context/CartContext";
 
 export default function CartComponent() {
-  const [cartproducts, setCartproducts] = useState([]);
-
-  const total = cartproducts.reduce((sun , product) => sun + product.price,0);
-
-  useEffect(() => {
-    async function Getcartproduct() {
-      const res = await fetch(
-        "https://dummyjson.com/products/category/laptops",
-      );
-
-      const data = await res.json();
-
-      setCartproducts(data.products);
-    }
-    Getcartproduct();
-  }, []);
-
+  let {cart,getTotal} = useContext(CartContext)
   return (
     <section
       dir="rtl"
@@ -41,19 +26,19 @@ export default function CartComponent() {
               </p>
             </div>
 
-            <span className="text-sm text-slate-500">تعداد محصولات: {cartproducts.length}</span>
+            {/* <span className="text-sm text-slate-500">تعداد محصولات: {cart.length}</span> */}
           </div>
 
           <div className="mt-5 divide-y divide-slate-200">
-            {cartproducts.map((product) => (
-              <CartItem key={product.id} product={product} />
+             {cart?.length > 0 &&  cart.map((product) => (
+              <CartItem key={product._id} product={product} />
             ))}
           </div>
 
           <div className="mt-5 space-y-4">
             <div className="flex justify-between border-t  pt-4 text-lg font-bold text-slate-800">
               <span>مبلغ نهایی</span>
-              <span>{formatPrice(total)} تومان</span>
+              <span>{formatPrice(getTotal())} تومان</span>
             </div>
 
             <button

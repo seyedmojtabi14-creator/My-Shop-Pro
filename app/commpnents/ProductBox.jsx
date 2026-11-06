@@ -1,7 +1,13 @@
+"use client"
 import Link from "next/link";
 import formatPrice from "../utils/formatPrice";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 export default function ProductBox({ product }) {
+
+  let {addToCart,dollarPrice} = useContext(CartContext)
+
   return (
     <div className="w-full min-w-0 overflow-hidden rounded-2xl border border-gray-100 bg-white p-3 shadow-sm transition duration-300 hover:shadow-lg sm:p-4">
       <Link href={`/products/${product._id}`}>
@@ -28,7 +34,7 @@ export default function ProductBox({ product }) {
           </span>
         </p>
 
-        <button className="rounded-xl bg-blue-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-blue-700">
+        <button onClick={() => addToCart(product)} className="rounded-xl bg-blue-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-blue-700">
           افزودن به سبد
         </button>
       </div>

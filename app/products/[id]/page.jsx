@@ -4,6 +4,7 @@ import { connectedToDatabase } from "@/app/lib/mongodb";
 import Product from "@/app/models/Product";
 import { notFound } from "next/navigation";
 
+
 export default async function ProductDetails({ params }) {
   const { id } = await params;
 
@@ -30,9 +31,9 @@ export default async function ProductDetails({ params }) {
 
           {/* سمت چپ: اطلاعات محصول */}
           <div className="text-right">
-            <span className="inline-block rounded-lg bg-blue-50 px-3 py-1.5 text-sm font-semibold text-blue-600">
+            <Link href={`/products?category=${encodeURIComponent(product.category)}`} className="inline-block rounded-lg bg-blue-50 px-3 py-1.5 text-sm font-semibold text-blue-600">
               {product.category}
-            </span>
+            </Link>
 
             <h1 className="mt-5 text-2xl font-bold leading-10 text-gray-900 sm:text-3xl">
               {product.title}
@@ -43,12 +44,7 @@ export default async function ProductDetails({ params }) {
               <span className="text-amber-400">★</span>
               <span>امتیاز محصول</span>
             </div>
-
-            <span>دسته بندی: </span>
-            <Link href={`/products?category=${encodeURIComponent(product.category)}`}>
-              {" "}
-              {product.category}{" "}
-            </Link>
+           
 
             <p className="mt-6 text-sm leading-8 text-gray-500 sm:text-base">
               {product.description}
@@ -83,17 +79,17 @@ export default async function ProductDetails({ params }) {
               </div>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap  gap-3">
               <Link
                 href="/products"
-                className="flex-1 rounded-xl border border-gray-200 px-5 py-3.5 text-center text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+                className="flex-1 sm:flex-none md:flex-1 rounded-xl border border-gray-200 px-5 py-3.5 text-center text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
               >
                 بازگشت به محصولات
               </Link>
 
               <Link
                 href="/cart"
-                className="flex-1 rounded-xl bg-blue-600 px-5 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="flex-1 sm:flex-none md:flex-1 rounded-xl bg-blue-600 px-5 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
               >
                 افزودن به سبد خرید
               </Link>

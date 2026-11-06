@@ -1,10 +1,19 @@
 import Link from "next/link";
 import formatPrice from "../../utils/formatPrice";
+import { connectedToDatabase } from "@/app/lib/mongodb";
+import Product from "@/app/models/Product";
+import { notFound } from "next/navigation";
 
 export default async function ProductDetails({ params }) {
   const { id } = await params;
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
-  const product = await res.json();
+
+  await connectedToDatabase();
+  // const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const product = await Product.findById(id).lean();
+
+  if(!product){
+    notFound();
+  }
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-16 mt-10">
@@ -36,7 +45,7 @@ export default async function ProductDetails({ params }) {
             </div>
 
             <span>دسته بندی: </span>
-            <Link href={`/products?category=${product.category}`}>
+            <Link href={`/products?category=${encodeURIComponent(product.category)}`}>
               {" "}
               {product.category}{" "}
             </Link>

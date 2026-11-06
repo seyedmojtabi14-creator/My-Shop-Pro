@@ -27,7 +27,9 @@ export default function CartComponent() {
               </p>
             </div>
 
-            <span className="text-sm text-slate-500">تعداد محصولات: {cart.length}</span>
+           {cart.length > 0 && (
+             <span className="text-sm text-slate-500">تعداد محصولات: {cart.length}</span>
+           )}
           </div>
 
           <div className="mt-5 divide-y divide-slate-200">
